@@ -30,10 +30,10 @@ namespace BlazorChat.App.Pages
         protected void Disconnect()
         {
             chatting = false;
-            ChatUI.OnMsg -= OnMsg;
-            ChatUI.OnDisconnect -= OnDisconnect;
-            ChatUI.OnConnected -= OnConnected;
-            ChatUI.OnDisconnect?.Invoke(myName);
+            ChatEvent.OnMsg -= OnMsg;
+            ChatEvent.OnDisconnect -= OnDisconnect;
+            ChatEvent.OnConnected -= OnConnected;
+            ChatEvent.OnDisconnect?.Invoke(myName);
         }
 
         /// <summary>
@@ -55,10 +55,10 @@ namespace BlazorChat.App.Pages
             };
 
             chatting = true;
-            ChatUI.OnMsg += OnMsg;
-            ChatUI.OnConnected?.Invoke(myName);
-            ChatUI.OnConnected += OnConnected;
-            ChatUI.OnDisconnect += OnDisconnect;
+            ChatEvent.OnMsg += OnMsg;
+            ChatEvent.OnConnected?.Invoke(myName);
+            ChatEvent.OnConnected += OnConnected;
+            ChatEvent.OnDisconnect += OnDisconnect;
         }
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace BlazorChat.App.Pages
         {
             if (chatting && !string.IsNullOrWhiteSpace(newMessage))
             {
-                ChatUI.OnMsg?.Invoke(myName, newMessage);
+                ChatEvent.OnMsg?.Invoke(myName, newMessage);
                 newMessage = string.Empty;
             }
         }

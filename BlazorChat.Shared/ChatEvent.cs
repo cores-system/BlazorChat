@@ -1,6 +1,6 @@
 ﻿namespace BlazorChat.Shared
 {
-    public static class ChatUI
+    public static class ChatEvent
     {
         /// <summary>
         /// 
